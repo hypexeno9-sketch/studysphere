@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StudySphere | Student Portal</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+
+        <div class="logo">
+            📚 StudySphere
+        </div>
+
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#subjects">Subjects</a>
+            <a href="#tools">Tools</a>
+            <a href="#about">About</a>
+        </div>
+
+    </nav>
+
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <p class="welcome">WELCOME TO STUDYSPHERE</p>
+
+            <h1>
+                Learn Better.<br>
+                Study Smarter.
+            </h1>
+
+            <p>
+                Your complete student learning platform for
+                notes, quizzes, revision and productivity.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#subjects" class="btn primary-btn">
+                    Start Learning 🚀
+                </a>
+
+                <a href="#tools" class="btn secondary-btn">
+                    Study Tools
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="hero-card">
+
+            <div class="student-icon">
+                🎓
+            </div>
+
+            <h3>
+                Your Study Journey
+            </h3>
+
+            <p>
+                Learn • Practice • Improve
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- SUBJECTS -->
+    <section class="section" id="subjects">
+
+        <div class="section-heading">
+
+            <p class="section-label">
+                LEARNING
+            </p>
+
+            <h2>
+                Explore Subjects
+            </h2>
+
+            <p>
+                Choose a subject and start learning.
+            </p>
+
+        </div>
+
+
+        <div class="subject-grid">
+
+            <!-- SCIENCE -->
+            <div class="subject-card">
+
+                <div class="subject-icon science">
+                    🔬
+                </div>
+
+                <h3>
+                    Science
+                </h3>
+
+                <p>
+                    Physics, Chemistry and Biology
+                    concepts and notes.
+                </p>
+
+                <button onclick="openSubject('Science')">
+                    Explore →
+                </button>
+
+            </div>
+
+
+            <!-- MATHEMATICS -->
+            <div class="subject-card">
+
+                <div class="subject-icon maths">
+                    📐
+                </div>
+
+                <h3>
+                    Mathematics
+                </h3>
+
+                <p>
+                    Formulas, examples and
+                    problem solving.
+                </p>
+
+                <button onclick="openSubject('Mathematics')">
+                    Explore →
+                </button>
+
+            </div>
+
+
+            <!-- COMPUTER -->
+            <div class="subject-card">
+
+                <div class="subject-icon computer">
+                    💻
+                </div>
+
+                <h3>
+                    Computer
+                </h3>
+
+                <p>
+                    Programming, HTML, CSS,
+                    JavaScript and more.
+                </p>
+
+                <button onclick="openSubject('Computer')">
+                    Explore →
+                </button>
+
+            </div>
+
+
+            <!-- SOCIAL SCIENCE -->
+            <div class="subject-card">
+
+                <div class="subject-icon social">
+                    🌍
+                </div>
+
+                <h3>
+                    Social Science
+                </h3>
+
+                <p>
+                    History, Geography, Civics
+                    and Economics.
+                </p>
+
+                <button onclick="openSubject('Social Science')">
+                    Explore →
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- STUDY TOOLS -->
+    <section class="section tools-section" id="tools">
+
+        <div class="section-heading">
+
+            <p class="section-label">
+                PRODUCTIVITY
+            </p>
+
+            <h2>
+                Study Tools
+            </h2>
+
+        </div>
+
+
+        <div class="tools-grid">
+
+            <div class="tool-card">
+
+                <div class="tool-icon">
+                    ⏱️
+                </div>
+
+                <h3>
+                    Focus Timer
+                </h3>
+
+                <p>
+                    Use focused study sessions
+                    to improve productivity.
+                </p>
+
+                <button onclick="startTimer()">
+                    Start Timer
+                </button>
+
+            </div>
+
+
+            <div class="tool-card">
+
+                <div class="tool-icon">
+                    📝
+                </div>
+
+                <h3>
+                    Quick Quiz
+                </h3>
+
+                <p>
+                    Test your knowledge with
+                    practice questions.
+                </p>
+
+                <button onclick="startQuiz()">
+                    Start Quiz
+                </button>
+
+            </div>
+
+
+            <div class="tool-card">
+
+                <div class="tool-icon">
+                    ✅
+                </div>
+
+                <h3>
+                    To-Do List
+                </h3>
+
+                <p>
+                    Organize your daily
+                    study tasks.
+                </p>
+
+                <button onclick="openTodo()">
+                    Open Tasks
+                </button>
+
+            </div>
+
+
+            <div class="tool-card">
+
+                <div class="tool-icon">
+                    🌙
+                </div>
+
+                <h3>
+                    Dark Mode
+                </h3>
+
+                <p>
+                    Switch between light
+                    and dark themes.
+                </p>
+
+                <button onclick="toggleDarkMode()">
+                    Change Theme
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+
+        <h2>
+            Built for Students 🎓
+        </h2>
+
+        <p>
+            StudySphere is designed to make studying
+            organized, simple and more productive.
+        </p>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    
+       <footer class="footer">
+    <div class="footer-content">
+        <h3>StudySphere</h3>
+        <p>Learn. Practice. Succeed.</p>
+
+        <p class="creator">
+            Created by <strong>Sachin Kumar</strong><br>
+            Class 9 Student of Nalanda Vidya Mandir
+        </p>
+
+        <p class="email">
+            📧 sachin.ff890@gmail.com
+        </p>
+
+        <p class="copyright">
+            © 2026 StudySphere. All Rights Reserved.
+        </p>
+    </div>
+</footer>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>
