@@ -1,354 +1,992 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudySphere | Class 9</title>
 
-    <title>StudySphere | Student Portal</title>
+  <meta name="description"
+        content="StudySphere - Interactive Class 9 study platform with notes, questions, quizzes and One-Shot revision.">
 
-    <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
-    <nav class="navbar">
+  <!-- =========================
+       NAVIGATION BAR
+  ========================== -->
 
-        <div class="logo">
-            📚 StudySphere
-        </div>
+  <header class="navbar">
 
-        <div class="nav-links">
-            <a href="#home">Home</a>
-            <a href="#subjects">Subjects</a>
-            <a href="#tools">Tools</a>
-            <a href="#about">About</a>
-        </div>
+    <div class="logo" onclick="goHome()">
+      <span class="logo-icon">S</span>
+      <span class="logo-text">StudySphere</span>
+    </div>
 
+    <nav class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#subjects">Subjects</a>
+      <a href="#tools">Tools</a>
+      <a href="#about">About</a>
     </nav>
 
+    <div class="nav-actions">
 
-    <!-- HERO SECTION -->
-    <section class="hero" id="home">
+      <button
+        id="themeBtn"
+        class="icon-btn"
+        onclick="toggleTheme()"
+        title="Toggle Dark Mode">
+        🌙
+      </button>
 
-        <div class="hero-content">
+      <button
+        class="mobile-menu-btn"
+        onclick="toggleMobileMenu()">
+        ☰
+      </button>
 
-            <p class="welcome">WELCOME TO STUDYSPHERE</p>
+    </div>
 
-            <h1>
-                Learn Better.<br>
-                Study Smarter.
-            </h1>
+  </header>
 
-            <p>
-                Your complete student learning platform for
-                notes, quizzes, revision and productivity.
-            </p>
 
-            <div class="hero-buttons">
+  <!-- MOBILE NAV -->
 
-                <a href="#subjects" class="btn primary-btn">
-                    Start Learning 🚀
-                </a>
+  <div id="mobileMenu" class="mobile-menu">
 
-                <a href="#tools" class="btn secondary-btn">
-                    Study Tools
-                </a>
+    <a href="#home" onclick="closeMobileMenu()">🏠 Home</a>
+    <a href="#subjects" onclick="closeMobileMenu()">📚 Subjects</a>
+    <a href="#tools" onclick="closeMobileMenu()">🛠️ Tools</a>
+    <a href="#about" onclick="closeMobileMenu()">ℹ️ About</a>
 
-            </div>
+  </div>
+
+
+  <!-- =========================
+       HOME / HERO
+  ========================== -->
+
+  <main>
+
+    <section id="home" class="hero">
+
+      <div class="hero-content">
+
+        <div class="hero-badge">
+          🎓 CLASS 9 • 2026–27
+        </div>
+
+        <h1>
+          Learn Better.
+          <br>
+          <span>Study Smarter.</span>
+        </h1>
+
+        <p class="hero-description">
+          Your interactive Class 9 study platform for
+          chapter-wise notes, competency questions,
+          quizzes and One-Shot revision.
+        </p>
+
+        <div class="hero-buttons">
+
+          <button
+            class="btn primary"
+            onclick="scrollToSubjects()">
+            Start Learning 🚀
+          </button>
+
+          <button
+            class="btn secondary"
+            onclick="showRandomQuestion()">
+            Quick Challenge 🧠
+          </button>
 
         </div>
 
-        <div class="hero-card">
+        <div class="hero-features">
 
-            <div class="student-icon">
-                🎓
-            </div>
-
-            <h3>
-                Your Study Journey
-            </h3>
-
-            <p>
-                Learn • Practice • Improve
-            </p>
+          <span>✓ Chapter-wise</span>
+          <span>✓ Interactive Quiz</span>
+          <span>✓ Competency Questions</span>
+          <span>✓ One-Shot Revision</span>
 
         </div>
+
+      </div>
+
+
+      <!-- DASHBOARD CARD -->
+
+      <div class="dashboard-card">
+
+        <div class="dashboard-top">
+
+          <div>
+            <small>STUDENT DASHBOARD</small>
+            <h3>Study Progress</h3>
+          </div>
+
+          <span class="live-badge">
+            ● LIVE
+          </span>
+
+        </div>
+
+
+        <div class="dashboard-stats">
+
+          <div class="stat-box">
+
+            <span class="stat-icon">📚</span>
+
+            <strong id="subjectCount">
+              3
+            </strong>
+
+            <small>Subjects</small>
+
+          </div>
+
+
+          <div class="stat-box">
+
+            <span class="stat-icon">📖</span>
+
+            <strong id="chapterCount">
+              0
+            </strong>
+
+            <small>Chapters</small>
+
+          </div>
+
+
+          <div class="stat-box">
+
+            <span class="stat-icon">🎯</span>
+
+            <strong id="quizScore">
+              —
+            </strong>
+
+            <small>Last Score</small>
+
+          </div>
+
+        </div>
+
+
+        <div class="dashboard-progress">
+
+          <div class="progress-heading">
+
+            <span>Overall Progress</span>
+
+            <span id="progressPercent">
+              0%
+            </span>
+
+          </div>
+
+          <div class="progress-bar">
+
+            <div
+              id="overallProgress"
+              class="progress-fill">
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="dashboard-message">
+
+          🎯 Pick a chapter and start learning!
+
+        </div>
+
+      </div>
 
     </section>
 
 
-    <!-- SUBJECTS -->
-    <section class="section" id="subjects">
 
-        <div class="section-heading">
+    <!-- =========================
+         FEATURE SECTION
+    ========================== -->
 
-            <p class="section-label">
-                LEARNING
-            </p>
+    <section class="features-section">
 
-            <h2>
-                Explore Subjects
-            </h2>
+      <div class="feature-card">
 
-            <p>
-                Choose a subject and start learning.
-            </p>
-
+        <div class="feature-icon">
+          📚
         </div>
 
+        <h3>Chapter Notes</h3>
 
-        <div class="subject-grid">
+        <p>
+          Learn important concepts
+          chapter by chapter.
+        </p>
 
-            <!-- SCIENCE -->
-            <div class="subject-card">
-
-                <div class="subject-icon science">
-                    🔬
-                </div>
-
-                <h3>
-                    Science
-                </h3>
-
-                <p>
-                    Physics, Chemistry and Biology
-                    concepts and notes.
-                </p>
-
-                <button onclick="openSubject('Science')">
-                    Explore →
-                </button>
-
-            </div>
+      </div>
 
 
-            <!-- MATHEMATICS -->
-            <div class="subject-card">
+      <div class="feature-card">
 
-                <div class="subject-icon maths">
-                    📐
-                </div>
-
-                <h3>
-                    Mathematics
-                </h3>
-
-                <p>
-                    Formulas, examples and
-                    problem solving.
-                </p>
-
-                <button onclick="openSubject('Mathematics')">
-                    Explore →
-                </button>
-
-            </div>
-
-
-            <!-- COMPUTER -->
-            <div class="subject-card">
-
-                <div class="subject-icon computer">
-                    💻
-                </div>
-
-                <h3>
-                    Computer
-                </h3>
-
-                <p>
-                    Programming, HTML, CSS,
-                    JavaScript and more.
-                </p>
-
-                <button onclick="openSubject('Computer')">
-                    Explore →
-                </button>
-
-            </div>
-
-
-            <!-- SOCIAL SCIENCE -->
-            <div class="subject-card">
-
-                <div class="subject-icon social">
-                    🌍
-                </div>
-
-                <h3>
-                    Social Science
-                </h3>
-
-                <p>
-                    History, Geography, Civics
-                    and Economics.
-                </p>
-
-                <button onclick="openSubject('Social Science')">
-                    Explore →
-                </button>
-
-            </div>
-
+        <div class="feature-icon">
+          🔥
         </div>
+
+        <h3>Hard Questions</h3>
+
+        <p>
+          Practice competency-based
+          and HOTS questions.
+        </p>
+
+      </div>
+
+
+      <div class="feature-card">
+
+        <div class="feature-icon">
+          🎯
+        </div>
+
+        <h3>Chapter Quiz</h3>
+
+        <p>
+          Every chapter has its own
+          interactive quiz.
+        </p>
+
+      </div>
+
+
+      <div class="feature-card">
+
+        <div class="feature-icon">
+          🎥
+        </div>
+
+        <h3>One-Shot Videos</h3>
+
+        <p>
+          Revise difficult concepts
+          with video lessons.
+        </p>
+
+      </div>
 
     </section>
 
 
-    <!-- STUDY TOOLS -->
-    <section class="section tools-section" id="tools">
 
-        <div class="section-heading">
+    <!-- =========================
+         SUBJECT SECTION
+    ========================== -->
 
-            <p class="section-label">
-                PRODUCTIVITY
-            </p>
+    <section id="subjects" class="section">
 
-            <h2>
-                Study Tools
-            </h2>
+      <div class="section-heading">
+
+        <div>
+
+          <span class="section-label">
+            LEARN BY SUBJECT
+          </span>
+
+          <h2>
+            Choose Your Subject
+          </h2>
+
+          <p>
+            Select a subject to explore
+            chapter-wise study material.
+          </p>
+
+        </div>
+
+
+        <!-- SEARCH -->
+
+        <div class="search-wrapper">
+
+          <span>🔎</span>
+
+          <input
+            id="searchInput"
+            type="text"
+            placeholder="Search chapter..."
+            autocomplete="off">
+
+          <button
+            id="clearSearch"
+            class="clear-search"
+            onclick="clearSearch()">
+            ×
+          </button>
 
         </div>
 
-
-        <div class="tools-grid">
-
-            <div class="tool-card">
-
-                <div class="tool-icon">
-                    ⏱️
-                </div>
-
-                <h3>
-                    Focus Timer
-                </h3>
-
-                <p>
-                    Use focused study sessions
-                    to improve productivity.
-                </p>
-
-                <button onclick="startTimer()">
-                    Start Timer
-                </button>
-
-            </div>
+      </div>
 
 
-            <div class="tool-card">
+      <!-- SUBJECT FILTERS -->
 
-                <div class="tool-icon">
-                    📝
-                </div>
+      <div class="subject-filters">
 
-                <h3>
-                    Quick Quiz
-                </h3>
+        <button
+          class="subject-filter active"
+          data-filter="all"
+          onclick="filterSubjects('all')">
+          🌐 All
+        </button>
 
-                <p>
-                    Test your knowledge with
-                    practice questions.
-                </p>
+        <button
+          class="subject-filter"
+          data-filter="science"
+          onclick="filterSubjects('science')">
+          🔬 Science
+        </button>
 
-                <button onclick="startQuiz()">
-                    Start Quiz
-                </button>
+        <button
+          class="subject-filter"
+          data-filter="mathematics"
+          onclick="filterSubjects('mathematics')">
+          📐 Mathematics
+        </button>
 
-            </div>
+        <button
+          class="subject-filter"
+          data-filter="social-science"
+          onclick="filterSubjects('social-science')">
+          🌍 Social Science
+        </button>
 
-
-            <div class="tool-card">
-
-                <div class="tool-icon">
-                    ✅
-                </div>
-
-                <h3>
-                    To-Do List
-                </h3>
-
-                <p>
-                    Organize your daily
-                    study tasks.
-                </p>
-
-                <button onclick="openTodo()">
-                    Open Tasks
-                </button>
-
-            </div>
+      </div>
 
 
-            <div class="tool-card">
+      <!-- SUBJECT GRID -->
 
-                <div class="tool-icon">
-                    🌙
-                </div>
+      <div
+        id="subjectGrid"
+        class="subject-grid">
 
-                <h3>
-                    Dark Mode
-                </h3>
+        <!-- JavaScript will load subjects here -->
 
-                <p>
-                    Switch between light
-                    and dark themes.
-                </p>
+      </div>
 
-                <button onclick="toggleDarkMode()">
-                    Change Theme
-                </button>
 
-            </div>
+      <!-- SEARCH RESULT MESSAGE -->
 
+      <div
+        id="noResults"
+        class="no-results hidden">
+
+        <div class="no-results-icon">
+          🔍
         </div>
+
+        <h3>
+          No chapter found
+        </h3>
+
+        <p>
+          Try another chapter name or subject.
+        </p>
+
+      </div>
 
     </section>
 
 
-    <!-- ABOUT -->
-    <section class="about" id="about">
+
+    <!-- =========================
+         CHAPTER SECTION
+    ========================== -->
+
+    <section
+      id="chapterSection"
+      class="section chapter-section hidden">
+
+      <button
+        id="backButton"
+        class="back-button"
+        onclick="backToSubjects()">
+
+        ← Back to Subjects
+
+      </button>
+
+
+      <!-- CHAPTER HEADER -->
+
+      <div
+        id="chapterHeader"
+        class="chapter-header">
+
+        <!-- JavaScript inserts header -->
+
+      </div>
+
+
+      <!-- CHAPTER TABS -->
+
+      <div class="chapter-tabs">
+
+        <button
+          class="tab active"
+          data-tab="notes"
+          onclick="switchTab('notes')">
+
+          📚 Notes
+
+        </button>
+
+
+        <button
+          class="tab"
+          data-tab="questions"
+          onclick="switchTab('questions')">
+
+          🔥 Hard Questions
+
+        </button>
+
+
+        <button
+          class="tab"
+          data-tab="quiz"
+          onclick="switchTab('quiz')">
+
+          🎯 Chapter Quiz
+
+        </button>
+
+
+        <button
+          class="tab"
+          data-tab="video"
+          onclick="switchTab('video')">
+
+          🎥 One-Shot
+
+        </button>
+
+
+        <button
+          class="tab"
+          data-tab="pdf"
+          onclick="switchTab('pdf')">
+
+          📄 PDF
+
+        </button>
+
+      </div>
+
+
+      <!-- TAB CONTENT -->
+
+      <div
+        id="tabContent"
+        class="tab-content">
+
+        <!-- JavaScript loads content -->
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         STUDY TOOLS
+    ========================== -->
+
+    <section
+      id="tools"
+      class="section tools-section">
+
+      <div class="section-heading">
+
+        <div>
+
+          <span class="section-label">
+            SMART TOOLS
+          </span>
+
+          <h2>
+            Study Tools
+          </h2>
+
+          <p>
+            Useful tools to make your study sessions
+            more focused and productive.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="tools-grid">
+
+
+        <!-- FOCUS TIMER -->
+
+        <div class="tool-card">
+
+          <div class="tool-icon">
+            ⏱️
+          </div>
+
+          <h3>
+            Focus Timer
+          </h3>
+
+          <p>
+            Use a focused study session
+            without distractions.
+          </p>
+
+
+          <div
+            id="timerDisplay"
+            class="timer-display">
+
+            25:00
+
+          </div>
+
+
+          <div class="timer-mode">
+
+            <button
+              class="timer-mode-btn active"
+              onclick="setTimer(25)"
+              data-time="25">
+              25 min
+            </button>
+
+            <button
+              class="timer-mode-btn"
+              onclick="setTimer(15)"
+              data-time="15">
+              15 min
+            </button>
+
+            <button
+              class="timer-mode-btn"
+              onclick="setTimer(5)"
+              data-time="5">
+              5 min
+            </button>
+
+          </div>
+
+
+          <div class="timer-buttons">
+
+            <button
+              id="startTimer"
+              class="btn primary"
+              onclick="startTimer()">
+
+              ▶ Start
+
+            </button>
+
+            <button
+              id="pauseTimer"
+              class="btn secondary"
+              onclick="pauseTimer()">
+
+              ⏸ Pause
+
+            </button>
+
+            <button
+              id="resetTimer"
+              class="btn secondary"
+              onclick="resetTimer()">
+
+              ↻ Reset
+
+            </button>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- QUICK CHALLENGE -->
+
+        <div class="tool-card">
+
+          <div class="tool-icon">
+            🧠
+          </div>
+
+          <h3>
+            Quick Challenge
+          </h3>
+
+          <p>
+            Test your knowledge with
+            a random question.
+          </p>
+
+
+          <div
+            id="challengeBox"
+            class="challenge-box">
+
+            <div class="challenge-label">
+              RANDOM QUESTION
+            </div>
+
+            <p id="challengeQuestion">
+              Click the button to get
+              a challenge.
+            </p>
+
+          </div>
+
+
+          <button
+            class="btn primary"
+            onclick="showRandomQuestion()">
+
+            Challenge Me 🧠
+
+          </button>
+
+        </div>
+
+
+
+        <!-- PROGRESS -->
+
+        <div class="tool-card">
+
+          <div class="tool-icon">
+            📈
+          </div>
+
+          <h3>
+            Your Progress
+          </h3>
+
+          <p>
+            Your quiz results are saved
+            automatically on this device.
+          </p>
+
+
+          <div class="progress-card">
+
+            <div class="progress-row">
+
+              <span>
+                Quizzes Attempted
+              </span>
+
+              <strong id="quizAttempts">
+                0
+              </strong>
+
+            </div>
+
+
+            <div class="progress-row">
+
+              <span>
+                Average Score
+              </span>
+
+              <strong id="averageScore">
+                0%
+              </strong>
+
+            </div>
+
+
+            <div class="progress-row">
+
+              <span>
+                Best Score
+              </span>
+
+              <strong id="bestScore">
+                0%
+              </strong>
+
+            </div>
+
+          </div>
+
+
+          <div
+            id="progressText"
+            class="progress-text">
+
+            No quiz attempted yet.
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         DAILY STUDY SECTION
+    ========================== -->
+
+    <section class="daily-section">
+
+      <div class="daily-card">
+
+        <div class="daily-content">
+
+          <span class="section-label">
+            DAILY MOTIVATION
+          </span>
+
+          <h2 id="dailyQuote">
+            Small progress every day
+            becomes big achievement.
+          </h2>
+
+          <p>
+            Keep learning. Keep practicing.
+            Keep improving.
+          </p>
+
+          <button
+            class="btn primary"
+            onclick="newMotivation()">
+
+            New Motivation ✨
+
+          </button>
+
+        </div>
+
+
+        <div class="daily-icon">
+          🚀
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         ABOUT
+    ========================== -->
+
+    <section
+      id="about"
+      class="section about-section">
+
+      <div class="about-card">
+
+        <span class="section-label">
+          ABOUT STUDYSPHERE
+        </span>
 
         <h2>
-            Built for Students 🎓
+          Built for Students 🚀
         </h2>
 
         <p>
-            StudySphere is designed to make studying
-            organized, simple and more productive.
+          StudySphere brings notes,
+          practice questions, chapter quizzes
+          and revision resources together
+          in one simple learning platform.
         </p>
+
+
+        <div class="about-points">
+
+          <span>
+            ✓ Chapter-wise learning
+          </span>
+
+          <span>
+            ✓ Competency-based practice
+          </span>
+
+          <span>
+            ✓ Separate chapter quizzes
+          </span>
+
+          <span>
+            ✓ One-Shot revision
+          </span>
+
+          <span>
+            ✓ Study timer
+          </span>
+
+          <span>
+            ✓ Progress tracking
+          </span>
+
+        </div>
+
+      </div>
 
     </section>
 
+  </main>
 
-    <!-- FOOTER -->
-    
-       <footer class="footer">
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer>
+
     <div class="footer-content">
-        <h3>StudySphere</h3>
-        <p>Learn. Practice. Succeed.</p>
 
-        <p class="creator">
-            Created by <strong>Sachin Kumar</strong><br>
-            Class 9 Student of Nalanda Vidya Mandir
+      <div class="footer-brand">
+
+        <div class="logo">
+
+          <span class="logo-icon">
+            S
+          </span>
+
+          <span>
+            StudySphere
+          </span>
+
+        </div>
+
+        <p>
+          Learn • Practice • Revise • Succeed
         </p>
 
-        <p class="email">
-            📧 sachin.ff890@gmail.com
-        </p>
+      </div>
 
-        <p class="copyright">
-            © 2026 StudySphere. All Rights Reserved.
-        </p>
+
+      <div class="footer-links">
+
+        <a href="#home">
+          Home
+        </a>
+
+        <a href="#subjects">
+          Subjects
+        </a>
+
+        <a href="#tools">
+          Tools
+        </a>
+
+        <a href="#about">
+          About
+        </a>
+
+      </div>
+
     </div>
-</footer>
 
 
-    <!-- JAVASCRIPT -->
-    <script src="js/app.js"></script>
+    <div class="footer-bottom">
+
+      <p>
+        © 2026 StudySphere. Made for students.
+      </p>
+
+      <p>
+        Class 9 • 2026–27
+      </p>
+
+    </div>
+
+  </footer>
+
+
+
+  <!-- =========================
+       NOTIFICATION
+  ========================== -->
+
+  <div
+    id="notification"
+    class="notification">
+
+    <span id="notificationIcon">
+      ✓
+    </span>
+
+    <span id="notificationText">
+      Done
+    </span>
+
+  </div>
+
+
+
+  <!-- =========================
+       QUIZ MODAL
+  ========================== -->
+
+  <div
+    id="quizModal"
+    class="modal hidden">
+
+    <div class="modal-overlay"
+         onclick="closeQuizModal()">
+    </div>
+
+    <div class="modal-card">
+
+      <button
+        class="modal-close"
+        onclick="closeQuizModal()">
+
+        ×
+
+      </button>
+
+      <div
+        id="quizModalContent">
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
+
+  <script src="js/data.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/app.js"></script>
 
 </body>
-
 </html>

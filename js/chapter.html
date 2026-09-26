@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Chapter | StudySphere</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="logo" onclick="location.href='index.html'">
+            <span class="logo-icon">S</span>
+            <span class="logo-text">StudySphere</span>
+        </div>
+
+        <button class="icon-btn" onclick="location.href='index.html'">
+            🏠
+        </button>
+    </header>
+
+
+    <main class="section">
+
+        <button class="back-btn" onclick="location.href='index.html'">
+            ← Back to Subjects
+        </button>
+
+        <div id="chapterHeader" class="chapter-header">
+            <span class="section-label">CHAPTER</span>
+            <h1 id="chapterTitle">Loading...</h1>
+            <p id="chapterDescription"></p>
+        </div>
+
+
+        <div class="chapter-tabs">
+
+            <button class="tab-btn active" onclick="showTab('notes')">
+                📖 Notes
+            </button>
+
+            <button class="tab-btn" onclick="showTab('questions')">
+                🧠 Hard Questions
+            </button>
+
+            <button class="tab-btn" onclick="showTab('quiz')">
+                📝 Chapter Quiz
+            </button>
+
+            <button class="tab-btn" onclick="showTab('video')">
+                ▶️ One-Shot
+            </button>
+
+            <button class="tab-btn" onclick="showTab('pdf')">
+                📄 PDF
+            </button>
+
+        </div>
+
+
+        <div id="tabContent" class="tab-content">
+            Loading chapter...
+        </div>
+
+    </main>
+
+
+    <script src="js/data.js"></script>
+    <script src="js/quiz.js"></script>
+
+    <script>
+
+        const params = new URLSearchParams(window.location.search);
+
+        const subjectId = params.get("subject");
+        const chapterId = params.get("chapter");
+
+        const subject = getSubject(subjectId);
+        const chapter = getChapter(subjectId, chapterId);
+
+
+        if (!chapter) {
+
+            document.getElementById("chapterTitle").textContent =
+                "Chapter Not Found";
+
+            document.getElementById("tabContent").innerHTML =
+                "<p>Sorry, this chapter could not be found.</p>";
+
+        } else {
+
+            document.getElementById("chapterTitle").textContent =
+                chapter.title;
+
+            document.getElementById("chapterDescription").textContent =
+                chapter.description || "";
+
+            showTab("notes");
+        }
+
+
+        function showTab(tab) {
+
+            if (!chapter) return;
+
+            document.querySelectorAll(".tab-btn").forEach(btn => {
+                btn.classList.remove("active");
+            });
+
+            const buttons = document.querySelectorAll(".tab-btn");
+
+            const tabNames = [
+                "notes",
+                "questions",
+                "quiz",
+                "video",
+                "pdf"
+            ];
+
+            const index = tabNames.indexOf(tab);
+
+            if (buttons[index]) {
+                buttons[index].classList.add("active");
+            }
+
+
+            const content = document.getElementById("tabContent");
+
+
+            if (tab === "notes") {
+
+                content.innerHTML = `
+                    <div class="notes-content">
+                        ${chapter.notes || "<p>Notes coming soon.</p>"}
+                    </div>
+                `;
+
+            }
+
+
+            else if (tab === "questions") {
+
+                let html = `
+                    <div class="questions-content">
+                        <h2>🧠 Hard Questions</h2>
+                `;
+
+                if (chapter.questions && chapter.questions.length) {
+
+                    chapter.questions.forEach((q, i) => {
+
+                        html += `
+                            <div class="question-card">
+                                <h3>Q${i + 1}. ${q.question || q}</h3>
+                                ${q.answer ? `<p><strong>Answer:</strong> ${q.answer}</p>` : ""}
+                            </div>
+                        `;
+
+                    });
+
+                } else {
+
+                    html += `<p>Questions coming soon.</p>`;
+
+                }
+
+                html += `</div>`;
+
+                content.innerHTML = html;
+
+            }
+
+
+            else if (tab === "quiz") {
+
+                content.innerHTML = `
+                    <div class="quiz-start-card">
+                        <h2>📝 Chapter Quiz</h2>
+                        <p>Test your knowledge of this chapter.</p>
+
+                        <button class="primary-btn"
+                            onclick="startChapterQuiz('${subjectId}', '${chapterId}')">
+                            Start Quiz
+                        </button>
+                    </div>
+                `;
+
+            }
+
+
+            else if (tab === "video") {
+
+                content.innerHTML = `
+                    <div class="video-content">
+                        <h2>▶️ One-Shot Revision</h2>
+
+                        ${
+                            chapter.video
+                            ? `<a class="primary-btn"
+                                href="${chapter.video}"
+                                target="_blank">
+                                Watch One-Shot
+                               </a>`
+                            : `<p>Video coming soon.</p>`
+                        }
+
+                    </div>
+                `;
+
+            }
+
+
+            else if (tab === "pdf") {
+
+                content.innerHTML = `
+                    <div class="pdf-content">
+
+                        <h2>📄 Chapter PDF</h2>
+
+                        ${
+                            chapter.pdf
+                            ? `
+                                <p>Complete chapter notes PDF:</p>
+
+                                <a class="primary-btn"
+                                   href="${chapter.pdf}"
+                                   target="_blank">
+                                   📄 Open PDF
+                                </a>
+                              `
+                            : `<p>PDF coming soon.</p>`
+                        }
+
+                    </div>
+                `;
+
+            }
+
+        }
+
+    </script>
+
+</body>
+</html>
