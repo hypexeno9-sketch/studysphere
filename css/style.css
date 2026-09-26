@@ -3745,9 +3745,6 @@ body.dark-mode .about-card {
     flex-direction: column;
   }
 
-  .mobile-menu.active {
-    display: flex !important;
-  }
 
   .mobile-menu a {
     display: block;
@@ -3766,4 +3763,71 @@ body.dark-mode .about-card {
   .mobile-menu-btn {
     display: none !important;
   }
+}
+/* ============================================================
+   FINAL MOBILE NAVBAR FIX
+   ============================================================ */
+
+@media (max-width: 768px) {
+
+    /* Desktop navigation hide */
+    .navbar .nav-links {
+        display: none !important;
+    }
+
+    /* Hamburger show */
+    .navbar .mobile-menu-btn {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+        display: none !important;
+        position: fixed;
+        top: 66px;
+        left: 0;
+        right: 0;
+        width: 100%;
+        z-index: 9999;
+
+        flex-direction: column;
+
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+        box-shadow: var(--shadow-md);
+    }
+
+    /* IMPORTANT:
+       app.js uses .show */
+    .mobile-menu.show {
+        display: flex !important;
+    }
+
+    .mobile-menu a {
+        display: block;
+        width: 100%;
+        padding: 15px 20px;
+        text-decoration: none;
+    }
+
+}
+
+
+@media (min-width: 769px) {
+
+    .navbar .nav-links {
+        display: flex !important;
+    }
+
+    .navbar .mobile-menu-btn {
+        display: none !important;
+    }
+
+    .mobile-menu {
+        display: none !important;
+    }
+
 }
