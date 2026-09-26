@@ -3719,3 +3719,51 @@ body.dark-mode .about-card {
     font-size: 16px !important;
   }
 }
+/* =========================================
+   MOBILE NAVBAR FIX
+   ========================================= */
+
+@media (max-width: 768px) {
+
+  /* Hide desktop navigation on mobile */
+  .nav-links {
+    display: none !important;
+  }
+
+  /* Show hamburger button */
+  .mobile-menu-btn {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  /* Mobile menu */
+  .mobile-menu {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .mobile-menu.active {
+    display: flex !important;
+  }
+
+  .mobile-menu a {
+    display: block;
+    width: 100%;
+    padding: 14px 20px;
+    text-decoration: none;
+  }
+}
+
+/* Desktop */
+@media (min-width: 769px) {
+  .mobile-menu {
+    display: none !important;
+  }
+
+  .mobile-menu-btn {
+    display: none !important;
+  }
+}
